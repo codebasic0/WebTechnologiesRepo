@@ -1,0 +1,196 @@
+<!-- Exercise 8: Form Handling with PHP Concepts (Simulated with JavaScript) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 8 - Form Handling & PHP</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">← Back to Home</a></li>
+            <li><a href="index.html">PHP Form Handling</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Form Handling & Processing</h1>
+        <p>PHP-style form processing with validation and data handling</p>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Contact Form -->
+            <section>
+                <h2>Contact Form (PHP-style Processing)</h2>
+                <form id="contactForm" class="form-section" onsubmit="handleContactForm(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select id="category" name="category" required>
+                            <option value="">-- Select Category --</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="sales">Sales</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="priority">Priority:</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="priority" value="low" checked> Low
+                            </label>
+                            <label>
+                                <input type="radio" name="priority" value="medium"> Medium
+                            </label>
+                            <label>
+                                <input type="radio" name="priority" value="high"> High
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="subscribe" value="yes">
+                            Subscribe to our newsletter
+                        </label>
+                    </div>
+
+                    <button type="submit">Submit Form</button>
+                    <button type="reset" style="margin-left: 0.5rem; background-color: #999;">Reset</button>
+                </form>
+
+                <div id="contactMessage"></div>
+            </section>
+
+            <!-- Product Order Form -->
+            <section>
+                <h2>Product Order Form</h2>
+                <form id="orderForm" class="form-section" onsubmit="handleOrderForm(event)">
+                    <div class="form-group">
+                        <label for="customerName">Customer Name:</label>
+                        <input type="text" id="customerName" name="customerName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product">Select Product:</label>
+                        <select id="product" name="product" required onchange="updatePrice()">
+                            <option value="">-- Select Product --</option>
+                            <option value="laptop" data-price="999.99">Laptop - $999.99</option>
+                            <option value="phone" data-price="699.99">Smartphone - $699.99</option>
+                            <option value="tablet" data-price="499.99">Tablet - $499.99</option>
+                            <option value="watch" data-price="299.99">Smartwatch - $299.99</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1" required onchange="updatePrice()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Delivery Address:</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentMethod">Payment Method:</label>
+                        <select id="paymentMethod" name="paymentMethod" required>
+                            <option value="">-- Select Payment Method --</option>
+                            <option value="creditcard">Credit Card</option>
+                            <option value="debitcard">Debit Card</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="bankTransfer">Bank Transfer</option>
+                        </select>
+                    </div>
+
+                    <div class="price-summary">
+                        <p>Product Price: <span id="productPrice">0.00</span></p>
+                        <p>Quantity: <span id="quantityDisplay">1</span></p>
+                        <p><strong>Total: $<span id="totalPrice">0.00</span></strong></p>
+                    </div>
+
+                    <button type="submit">Place Order</button>
+                    <button type="reset" style="margin-left: 0.5rem; background-color: #999;">Clear</button>
+                </form>
+
+                <div id="orderMessage"></div>
+            </section>
+        </div>
+
+        <!-- Submissions Display -->
+        <section>
+            <h2>Form Submissions (Server-Side Storage - Simulated)</h2>
+            <div class="tabs" style="margin-bottom: 1rem;">
+                <button class="tab-btn active" onclick="switchTab('contactSubmissions')">Contact Forms</button>
+                <button class="tab-btn" onclick="switchTab('orderSubmissions')">Orders</button>
+            </div>
+
+            <div id="contactSubmissions" class="tab-content active">
+                <div id="contactList" class="submissions-list"></div>
+            </div>
+
+            <div id="orderSubmissions" class="tab-content">
+                <div id="orderList" class="submissions-list"></div>
+            </div>
+        </section>
+
+        <!-- Information Section -->
+        <section style="margin-top: 2rem;">
+            <h2>PHP Form Handling Concepts</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Form Validation</h3>
+                    <p>Server-side validation ensures data integrity and security before processing.</p>
+                </div>
+                <div class="card">
+                    <h3>Data Sanitization</h3>
+                    <p>Remove dangerous characters and format data properly for database storage.</p>
+                </div>
+                <div class="card">
+                    <h3>Error Handling</h3>
+                    <p>Gracefully handle errors and provide meaningful feedback to users.</p>
+                </div>
+                <div class="card">
+                    <h3>File Uploads</h3>
+                    <p>Handle file uploads securely with proper validation and storage.</p>
+                </div>
+                <div class="card">
+                    <h3>Email Integration</h3>
+                    <p>Send confirmation emails and notifications triggered by form submissions.</p>
+                </div>
+                <div class="card">
+                    <h3>Data Persistence</h3>
+                    <p>Store form data in database for later retrieval and analysis.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Form Processing System. All rights reserved.</p>
+        <p>Form Handling & PHP Concepts - Exercise 8</p>
+    </footer>
+
+    <script src="forms.js"></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!-- Exercise 4: Enhanced E-Commerce Website with CSS -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4 - Enhanced E-Commerce Store</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Internal CSS for gradient buttons and animations */
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+            border-radius: 14px;
+            background: #111827;
+            border: 1px solid #334155;
+            color: #E2E8F0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(14, 165, 233, 0.2);
+        }
+
+        .product-card h3 {
+            color: #E2E8F0;
+        }
+
+        .product-card p {
+            color: #CBD5E1;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0EA5E9;
+            margin: 0.75rem 0;
+        }
+
+        .features-list {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .features-list li {
+            padding: 0.25rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">← Back to Home</a></li>
+            <li><a href="index.html">Store</a></li>
+            <li><a href="#highlights">Why Us</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#products">Products</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>TechHub - Premium Tech Store</h1>
+        <p>Experience the Latest Technology with Premium Quality</p>
+    </header>
+
+    <main>
+        <!-- Store Highlights -->
+        <section id="highlights">
+            <h1>Why Choose TechHub?</h1>
+            <div class="highlights-grid">
+                <div class="highlight-box">
+                    <h3>🚚 Fast Shipping</h3>
+                    <p>Free shipping on orders over $50. Express delivery available.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>🔒 Secure Checkout</h3>
+                    <p>SSL encrypted payment processing for your security.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>✓ Authentic Products</h3>
+                    <p>100% genuine products with manufacturer warranty.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>💬 Expert Support</h3>
+                    <p>24/7 customer service from knowledgeable tech experts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories">
+            <h1>Shop by Category</h1>
+            <div class="category-showcase">
+                <article class="category-card">
+                    <h3>Smartphones</h3>
+                    <p>Latest flagship models and budget-friendly options</p>
+                    <span class="badge badge-primary">24 Products</span>
+                </article>
+
+                <article class="category-card">
+                    <h3>Laptops</h3>
+                    <p>High-performance machines for work and gaming</p>
+                    <span class="badge badge-secondary">18 Products</span>
+                </article>
+
+                <article class="category-card">
+                    <h3>Audio</h3>
+                    <p>Premium headphones and speakers with superior sound</p>
+                    <span class="badge badge-primary">32 Products</span>
+                </article>
+
+                <article class="category-card">
+                    <h3>Wearables</h3>
+                    <p>Smart watches and fitness trackers</p>
+                    <span class="badge badge-secondary">16 Products</span>
+                </article>
+
+                <article class="category-card">
+                    <h3>Gaming</h3>
+                    <p>Gaming consoles, controllers, and accessories</p>
+                    <span class="badge badge-primary">28 Products</span>
+                </article>
+
+                <article class="category-card">
+                    <h3>Accessories</h3>
+                    <p>Phone cases, chargers, cables, and more</p>
+                    <span class="badge badge-secondary">45 Products</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section id="products">
+            <h1>Featured Products</h1>
+            <div class="grid">
+                <article class="card product-card">
+                    <h3>Wireless Headphones Pro</h3>
+                    <p class="price-tag">$299.99</p>
+                    <div class="features-list">
+                        <ul>
+                            <li>✓ Active Noise Cancellation</li>
+                            <li>✓ 40-hour battery</li>
+                            <li>✓ Bluetooth 5.0</li>
+                            <li>✓ Premium materials</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary">Add to Cart</button>
+                </article>
+
+                <article class="card product-card">
+                    <h3>USB-C Fast Charger 65W</h3>
+                    <p class="price-tag">$49.99</p>
+                    <div class="features-list">
+                        <ul>
+                            <li>✓ 65W output power</li>
+                            <li>✓ Multi-device support</li>
+                            <li>✓ Compact design</li>
+                            <li>✓ Safety certified</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary">Add to Cart</button>
+                </article>
+
+                <article class="card product-card">
+                    <h3>Tempered Glass Protector</h3>
+                    <p class="price-tag">$19.99</p>
+                    <div class="features-list">
+                        <ul>
+                            <li>✓ 9H hardness</li>
+                            <li>✓ Pack of 3</li>
+                            <li>✓ Easy application</li>
+                            <li>✓ Bubble-free</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary">Add to Cart</button>
+                </article>
+
+                <article class="card product-card">
+                    <h3>Aluminum Laptop Stand</h3>
+                    <p class="price-tag">$39.99</p>
+                    <div class="features-list">
+                        <ul>
+                            <li>✓ Adjustable height</li>
+                            <li>✓ Premium aluminum</li>
+                            <li>✓ Portable design</li>
+                            <li>✓ All laptops</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary">Add to Cart</button>
+                </article>
+
+                <article class="card product-card">
+                    <h3>Power Bank 20000mAh</h3>
+                    <p class="price-tag">$59.99</p>
+                    <div class="features-list">
+                        <ul>
+                            <li>✓ 20000mAh capacity</li>
+                            <li>✓ Fast charging support</li>
+                            <li>✓ LED display</li>
+                            <li>✓ Dual output</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary">Add to Cart</button>
+                </article>
+
+                <article class="card product-card">
+                    <h3>Mechanical Gaming Keyboard</h3>
+                    <p class="price-tag">$129.99</p>
+                    <div class="features-list">
+                        <ul>
+                            <li>✓ RGB LED backlit</li>
+                            <li>✓ Cherry MX switches</li>
+                            <li>✓ Wireless Bluetooth</li>
+                            <li>✓ Programmable keys</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary">Add to Cart</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Special Offer -->
+        <section class="special-offer">
+            <h2>🎉 Limited Time Offer</h2>
+            <p>Get 20% off on your first order using code: TECH20</p>
+            <p style="color: #666; font-size: 0.9rem;">Valid until end of month. Excludes sale items.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TechHub Store. All rights reserved.</p>
+        <p>Enhanced E-Commerce Store - Exercise 4 (with CSS: Inline, Internal, External)</p>
+    </footer>
+</body>
+</html>

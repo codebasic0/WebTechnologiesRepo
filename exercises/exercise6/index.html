@@ -1,0 +1,184 @@
+<!-- Exercise 6: Registration & Login Forms with JavaScript Validation -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6 - Registration & Login Forms</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">← Back to Home</a></li>
+            <li><a href="index.html">Forms & Validation</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>User Registration & Login</h1>
+        <p>Secure form validation with JavaScript</p>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button class="tab-btn" onclick="switchTab('register')">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login" class="tab-content active">
+                <h2>User Login</h2>
+                <form id="loginForm" class="form-section" onsubmit="handleLoginSubmit(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address:</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                        <span class="error" id="loginEmailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                        <span class="error" id="loginPasswordError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="rememberMe" name="remember">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <button type="submit" class="form-btn">Login</button>
+                    <p style="text-align: center; margin-top: 1rem;">
+                        Don't have an account? <a href="#" onclick="switchTab('register'); return false;">Register here</a>
+                    </p>
+                </form>
+
+                <div id="loginMessage"></div>
+            </div>
+
+            <!-- Registration Form -->
+            <div id="register" class="tab-content">
+                <h2>Create Account</h2>
+                <form id="registerForm" class="form-section" onsubmit="handleRegisterSubmit(event)">
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                        <span class="error" id="fullNameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regEmail">Email Address:</label>
+                        <input type="email" id="regEmail" name="email" required>
+                        <span class="error" id="regEmailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <span class="error" id="phoneError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regPassword">Password:</label>
+                        <input type="password" id="regPassword" name="password" required>
+                        <span class="error" id="regPasswordError"></span>
+                        <small style="display: block; margin-top: 0.5rem;">
+                            Password must be at least 8 characters with uppercase, lowercase, and numbers
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="confirm" required>
+                        <span class="error" id="confirmPasswordError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <textarea id="address" name="address" rows="3"></textarea>
+                        <span class="error" id="addressError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country:</label>
+                        <select id="country" name="country" required>
+                            <option value="">-- Select Country --</option>
+                            <option value="USA">United States</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Australia">Australia</option>
+                            <option value="India">India</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span class="error" id="countryError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="terms" name="terms" required>
+                            I agree to the Terms and Conditions
+                        </label>
+                        <span class="error" id="termsError"></span>
+                    </div>
+
+                    <button type="submit" class="form-btn">Create Account</button>
+                    <p style="text-align: center; margin-top: 1rem;">
+                        Already have an account? <a href="#" onclick="switchTab('login'); return false;">Login here</a>
+                    </p>
+                </form>
+
+                <div id="registerMessage"></div>
+            </div>
+        </div>
+
+        <!-- User List Section -->
+        <section style="margin-top: 3rem;">
+            <h2>Registered Users</h2>
+            <div id="usersList" class="users-list"></div>
+        </section>
+
+        <!-- Information Section -->
+        <section style="margin-top: 2rem;">
+            <h2>Validation Features</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>✓ Email Validation</h3>
+                    <p>Validates email format and checks for duplicate registrations</p>
+                </div>
+                <div class="card">
+                    <h3>✓ Password Strength</h3>
+                    <p>Requires strong passwords with uppercase, lowercase, and numbers</p>
+                </div>
+                <div class="card">
+                    <h3>✓ Password Confirmation</h3>
+                    <p>Ensures both password fields match during registration</p>
+                </div>
+                <div class="card">
+                    <h3>✓ Phone Validation</h3>
+                    <p>Validates phone number format and length</p>
+                </div>
+                <div class="card">
+                    <h3>✓ Local Storage</h3>
+                    <p>User data is stored in browser local storage</p>
+                </div>
+                <div class="card">
+                    <h3>✓ Real-time Feedback</h3>
+                    <p>See validation errors instantly while filling the form</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Registration & Login System. All rights reserved.</p>
+        <p>Forms with Validation - Exercise 6</p>
+    </footer>
+
+    <script src="forms.js"></script>
+</body>
+</html>

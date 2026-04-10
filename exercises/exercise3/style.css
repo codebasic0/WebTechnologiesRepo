@@ -1,0 +1,54 @@
+/* External CSS for Exercise 3 */
+
+/* Section styling */
+section {
+    margin-bottom: 3rem;
+}
+
+section h1 {
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+section h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* Card enhancements */
+section .card {
+    transition: all 0.3s ease;
+    border-top: 4px solid #667eea;
+}
+
+section .card:hover {
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+}
+
+/* Grid responsiveness */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+}

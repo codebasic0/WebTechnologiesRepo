@@ -1,0 +1,231 @@
+/* CSS for Event Handling Demo */
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.event-box {
+    background: #111827;
+    padding: 1.75rem;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    color: #E2E8F0;
+}
+
+.event-box:hover {
+    border-color: #0EA5E9;
+    box-shadow: 0 18px 40px rgba(14, 165, 233, 0.15);
+}
+
+.event-btn {
+    background: linear-gradient(135deg, #0EA5E9 0%, #0B93C4 100%);
+    color: white;
+    padding: 0.85rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.event-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(14, 165, 233, 0.3);
+}
+
+.event-btn:active {
+    transform: translateY(0);
+}
+
+.draggable {
+    background: linear-gradient(135deg, #0F172A 0%, #111827 100%);
+    color: #E2E8F0;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    cursor: move;
+    user-select: none;
+    transition: all 0.3s ease;
+    border: 1px solid #334155;
+}
+
+.draggable.dragging {
+    opacity: 0.85;
+    transform: scale(1.03);
+    box-shadow: 0 12px 28px rgba(14, 165, 233, 0.2);
+}
+
+.input-event {
+    width: 100%;
+    padding: 0.9rem;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1rem;
+    background: #0F172A;
+    color: #E2E8F0;
+}
+
+.input-event::placeholder {
+    color: #94A3B8;
+}
+
+.input-event:focus {
+    outline: none;
+    border-color: #0EA5E9;
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12);
+}
+
+.display-box {
+    background-color: #0F172A;
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid #0EA5E9;
+    color: #E2E8F0;
+}
+
+.form-events {
+    background: #111827;
+    padding: 1.5rem;
+    border-radius: 16px;
+}
+
+.event-log,
+.propagationLog {
+    background-color: #0F172A;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    color: #E2E8F0;
+}
+
+.log-content {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.log-item {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    background: #111827;
+    border-left: 3px solid #0EA5E9;
+    border-radius: 8px;
+}
+
+.log-time {
+    color: #94A3B8;
+    font-size: 0.8rem;
+}
+
+.bubble-parent {
+    background: linear-gradient(135deg, #0F172A 0%, #111827 100%);
+    color: #E2E8F0;
+    padding: 2rem;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    border: 1px solid #334155;
+}
+
+.bubble-parent h4 {
+    color: #E2E8F0;
+    margin-bottom: 1rem;
+}
+
+.bubble-child {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 16px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bubble-child h4 {
+    color: #E2E8F0;
+    margin-bottom: 1rem;
+}
+
+.bubble-grandchild {
+    background: #0EA5E9;
+    color: white;
+    padding: 0.85rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+}
+
+.bubble-grandchild:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+}
+
+p[id$="Msg"] {
+    color: #38BDF8;
+    font-weight: 600;
+    min-height: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Scrollbar styling */
+.event-log::-webkit-scrollbar,
+.log-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.event-log::-webkit-scrollbar-track,
+.log-content::-webkit-scrollbar-track {
+    background: #0F172A;
+    border-radius: 3px;
+}
+
+.event-log::-webkit-scrollbar-thumb,
+.log-content::-webkit-scrollbar-thumb {
+    background: #0EA5E9;
+    border-radius: 3px;
+}
+
+/* Responsive */
+.event-log::-webkit-scrollbar,
+.log-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.event-log::-webkit-scrollbar-track,
+.log-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.event-log::-webkit-scrollbar-thumb,
+.log-content::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bubble-parent {
+        padding: 1rem;
+    }
+
+    .bubble-child {
+        padding: 1rem;
+    }
+}

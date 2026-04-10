@@ -1,0 +1,164 @@
+<!-- Exercise 5: Scientific Calculator -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 5 - Scientific Calculator</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">← Back to Home</a></li>
+            <li><a href="index.html">Scientific Calculator</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Scientific Calculator</h1>
+        <p>Advanced mathematical calculations with ease</p>
+    </header>
+
+    <main>
+        <section class="calculator-container">
+            <div class="calculator">
+                <div class="display">
+                    <input type="text" id="display" class="display-input" readonly>
+                </div>
+
+                <div class="mode-selector">
+                    <button id="standardMode" class="mode-btn active">Standard</button>
+                    <button id="scientificMode" class="mode-btn">Scientific</button>
+                </div>
+
+                <!-- Standard Mode Buttons -->
+                <div id="standardButtons" class="button-grid standard-grid">
+                    <button class="btn" onclick="calculator.clear()">C</button>
+                    <button class="btn" onclick="calculator.appendValue('(')">(</button>
+                    <button class="btn" onclick="calculator.appendValue(')')">)</button>
+                    <button class="btn operator" onclick="calculator.appendValue('/')">/</button>
+
+                    <button class="btn" onclick="calculator.appendValue('7')">7</button>
+                    <button class="btn" onclick="calculator.appendValue('8')">8</button>
+                    <button class="btn" onclick="calculator.appendValue('9')">9</button>
+                    <button class="btn operator" onclick="calculator.appendValue('*')">*</button>
+
+                    <button class="btn" onclick="calculator.appendValue('4')">4</button>
+                    <button class="btn" onclick="calculator.appendValue('5')">5</button>
+                    <button class="btn" onclick="calculator.appendValue('6')">6</button>
+                    <button class="btn operator" onclick="calculator.appendValue('-')">-</button>
+
+                    <button class="btn" onclick="calculator.appendValue('1')">1</button>
+                    <button class="btn" onclick="calculator.appendValue('2')">2</button>
+                    <button class="btn" onclick="calculator.appendValue('3')">3</button>
+                    <button class="btn operator" onclick="calculator.appendValue('+')">+</button>
+
+                    <button class="btn" onclick="calculator.appendValue('0')">0</button>
+                    <button class="btn" onclick="calculator.appendValue('.')">.</button>
+                    <button class="btn" onclick="calculator.backspace()">←</button>
+                    <button class="btn equals" onclick="calculator.calculate()">=</button>
+                </div>
+
+                <!-- Scientific Mode Buttons -->
+                <div id="scientificButtons" class="button-grid scientific-grid" style="display: none;">
+                    <button class="btn" onclick="calculator.clear()">C</button>
+                    <button class="btn" onclick="calculator.appendValue('(')">(</button>
+                    <button class="btn" onclick="calculator.appendValue(')')">)</button>
+                    <button class="btn operator" onclick="calculator.appendValue('/')">/</button>
+                    <button class="btn scientific" onclick="calculator.sqrt()">√</button>
+                    <button class="btn scientific" onclick="calculator.power()">x²</button>
+
+                    <button class="btn" onclick="calculator.appendValue('7')">7</button>
+                    <button class="btn" onclick="calculator.appendValue('8')">8</button>
+                    <button class="btn" onclick="calculator.appendValue('9')">9</button>
+                    <button class="btn operator" onclick="calculator.appendValue('*')">*</button>
+                    <button class="btn scientific" onclick="calculator.sin()">sin</button>
+                    <button class="btn scientific" onclick="calculator.cos()">cos</button>
+
+                    <button class="btn" onclick="calculator.appendValue('4')">4</button>
+                    <button class="btn" onclick="calculator.appendValue('5')">5</button>
+                    <button class="btn" onclick="calculator.appendValue('6')">6</button>
+                    <button class="btn operator" onclick="calculator.appendValue('-')">-</button>
+                    <button class="btn scientific" onclick="calculator.tan()">tan</button>
+                    <button class="btn scientific" onclick="calculator.log()">log</button>
+
+                    <button class="btn" onclick="calculator.appendValue('1')">1</button>
+                    <button class="btn" onclick="calculator.appendValue('2')">2</button>
+                    <button class="btn" onclick="calculator.appendValue('3')">3</button>
+                    <button class="btn operator" onclick="calculator.appendValue('+')">+</button>
+                    <button class="btn scientific" onclick="calculator.ln()">ln</button>
+                    <button class="btn scientific" onclick="calculator.factorial()">n!</button>
+
+                    <button class="btn" onclick="calculator.appendValue('0')">0</button>
+                    <button class="btn" onclick="calculator.appendValue('.')">.</button>
+                    <button class="btn" onclick="calculator.appendValue('3.14159')">π</button>
+                    <button class="btn scientific" onclick="calculator.reciprocal()">1/x</button>
+                    <button class="btn scientific" onclick="calculator.percent()">%</button>
+                    <button class="btn equals" onclick="calculator.calculate()">=</button>
+                </div>
+            </div>
+
+            <div class="calculation-history">
+                <h3>Calculation History</h3>
+                <div id="history" class="history-list"></div>
+                <button onclick="calculator.clearHistory()">Clear History</button>
+            </div>
+        </section>
+
+        <section style="margin-top: 2rem;">
+            <h2>How to Use the Calculator</h2>
+            <ul style="margin-left: 2rem;">
+                <li><strong>Standard Mode:</strong> Basic arithmetic operations (+, -, *, /)</li>
+                <li><strong>Scientific Mode:</strong> Advanced functions including trigonometry, logarithms, and more</li>
+                <li><strong>History:</strong> All your calculations are stored in the history panel</li>
+                <li><strong>Keyboard Support:</strong> You can also type numbers and operators using your keyboard</li>
+            </ul>
+
+            <h3>Scientific Functions:</h3>
+            <table style="margin-top: 1rem;">
+                <tr>
+                    <td><strong>√</strong></td>
+                    <td>Square root</td>
+                </tr>
+                <tr>
+                    <td><strong>x²</strong></td>
+                    <td>Square (power of 2)</td>
+                </tr>
+                <tr>
+                    <td><strong>sin, cos, tan</strong></td>
+                    <td>Trigonometric functions (in degrees)</td>
+                </tr>
+                <tr>
+                    <td><strong>log</strong></td>
+                    <td>Logarithm base 10</td>
+                </tr>
+                <tr>
+                    <td><strong>ln</strong></td>
+                    <td>Natural logarithm</td>
+                </tr>
+                <tr>
+                    <td><strong>n!</strong></td>
+                    <td>Factorial</td>
+                </tr>
+                <tr>
+                    <td><strong>1/x</strong></td>
+                    <td>Reciprocal</td>
+                </tr>
+                <tr>
+                    <td><strong>π</strong></td>
+                    <td>Pi constant</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Scientific Calculator. All rights reserved.</p>
+        <p>Scientific Calculator - Exercise 5</p>
+    </footer>
+
+    <script src="calculator.js"></script>
+</body>
+</html>

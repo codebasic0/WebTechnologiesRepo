@@ -1,0 +1,189 @@
+<!-- Exercise 7: Event Handling Mechanisms -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 7 - Event Handling Mechanisms</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">← Back to Home</a></li>
+            <li><a href="index.html">Event Handling</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>JavaScript Event Handling</h1>
+        <p>Master different event handling mechanisms</p>
+    </header>
+
+    <main>
+        <!-- Mouse Events Section -->
+        <section>
+            <h2>Mouse Events</h2>
+            <div class="event-grid">
+                <div class="event-box">
+                    <button id="hoverBtn" class="event-btn">Hover Over Me</button>
+                    <p id="hoverMsg"></p>
+                </div>
+
+                <div class="event-box">
+                    <button id="clickBtn" class="event-btn">Click Me</button>
+                    <p id="clickMsg"></p>
+                </div>
+
+                <div class="event-box">
+                    <button id="dblClickBtn" class="event-btn">Double Click</button>
+                    <p id="dblClickMsg"></p>
+                </div>
+
+                <div class="event-box">
+                    <div id="draggableBox" class="draggable">Drag Me</div>
+                    <p id="dragMsg"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keyboard Events Section -->
+        <section>
+            <h2>Keyboard Events</h2>
+            <div class="event-box">
+                <label for="keyInput">Type something:</label>
+                <input type="text" id="keyInput" placeholder="Type to see keyboard events" class="input-event">
+                <div id="keyboardDisplay" class="display-box">
+                    <p id="keyDownMsg"></p>
+                    <p id="keyUpMsg"></p>
+                    <p id="keyPressMsg"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Events Section -->
+        <section>
+            <h2>Form Events</h2>
+            <form id="eventForm" class="form-events">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Enter username">
+                    <p id="focusMsg"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Enter email">
+                    <p id="changeMsg"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Message:</label>
+                    <textarea id="subject" placeholder="Type your message"></textarea>
+                    <p id="inputMsg"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="terms">
+                        <input type="checkbox" id="terms">
+                        I agree to terms
+                    </label>
+                </div>
+
+                <button type="submit" id="submitBtn">Submit Form</button>
+            </form>
+        </section>
+
+        <!-- Window Events Section -->
+        <section>
+            <h2>Window Events</h2>
+            <div class="event-grid">
+                <div class="event-box">
+                    <h4>Window Resize</h4>
+                    <p>Window Width: <span id="windowWidth">0</span>px</p>
+                    <p>Window Height: <span id="windowHeight">0</span>px</p>
+                </div>
+
+                <div class="event-box">
+                    <h4>Page Scroll</h4>
+                    <p>Scroll Position: <span id="scrollPos">0</span>px</p>
+                    <button onclick="scrollToTop()">Back to Top</button>
+                </div>
+
+                <div class="event-box">
+                    <h4>Load Status</h4>
+                    <p id="loadStatus">Page fully loaded</p>
+                </div>
+
+                <div class="event-box">
+                    <h4>Page Visibility</h4>
+                    <p id="visibilityStatus">Page is visible</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Events Section -->
+        <section>
+            <h2>Custom Events</h2>
+            <div class="event-box">
+                <h3>Event Emitter Demo</h3>
+                <button id="emitterBtn" class="event-btn">Trigger Custom Event</button>
+                <div id="eventLog" class="event-log"></div>
+                <button onclick="clearEventLog()">Clear Log</button>
+            </div>
+        </section>
+
+        <!-- Event Bubbling / Capturing -->
+        <section>
+            <h2>Event Bubbling &amp; Capturing</h2>
+            <div id="parent" class="bubble-parent">
+                <h4>Parent Element (Click anywhere)</h4>
+                <div id="child" class="bubble-child">
+                    <h4>Child Element (Click anywhere)</h4>
+                    <button id="grandchild" class="bubble-grandchild">Grandchild Button</button>
+                </div>
+            </div>
+            <div class="event-log">
+                <h4>Event Propagation Log:</h4>
+                <div id="propagationLog" class="log-content"></div>
+                <button onclick="clearPropagationLog()">Clear Log</button>
+            </div>
+        </section>
+
+        <!-- Information Section -->
+        <section style="margin-top: 2rem;">
+            <h2>Events Demonstrated</h2>
+            <table style="width: 100%;">
+                <tr>
+                    <td><strong>Mouse Events</strong></td>
+                    <td>click, dblclick, mouseover, mouseout, drag, drop</td>
+                </tr>
+                <tr>
+                    <td><strong>Keyboard Events</strong></td>
+                    <td>keydown, keyup, keypress</td>
+                </tr>
+                <tr>
+                    <td><strong>Form Events</strong></td>
+                    <td>focus, blur, change, input, submit, reset</td>
+                </tr>
+                <tr>
+                    <td><strong>Window Events</strong></td>
+                    <td>load, resize, scroll, beforeunload, visibilitychange</td>
+                </tr>
+                <tr>
+                    <td><strong>Custom Events</strong></td>
+                    <td>CustomEvent, addEventListener, dispatchEvent</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Event Handling Demo. All rights reserved.</p>
+        <p>Event Handling Mechanisms - Exercise 7</p>
+    </footer>
+
+    <script src="events.js"></script>
+</body>
+</html>

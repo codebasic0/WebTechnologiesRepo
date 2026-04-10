@@ -1,0 +1,237 @@
+<!-- Exercise 10: Sessions & Cookies with PHP -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 10 - Sessions & Cookies</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">← Back to Home</a></li>
+            <li><a href="index.html">Sessions & Cookies</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Sessions & Cookies Management</h1>
+        <p>Persist user data across multiple pages</p>
+    </header>
+
+    <main>
+        <!-- User Session Info -->
+        <section>
+            <h2>Current Session Information</h2>
+            <div class="session-info">
+                <div class="info-box">
+                    <h4>Session ID:</h4>
+                    <p id="sessionId">Not started</p>
+                </div>
+                <div class="info-box">
+                    <h4>Session Started:</h4>
+                    <p id="sessionStart">--</p>
+                </div>
+                <div class="info-box">
+                    <h4>Session Duration:</h4>
+                    <p id="sessionDuration">--</p>
+                </div>
+                <div class="info-box">
+                    <h4>User Agent:</h4>
+                    <p id="userAgent">--</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Set Cookies -->
+        <section>
+            <h2>Set Cookies</h2>
+            <form onsubmit="setCookie(event)" class="form-section">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cookieName">Cookie Name:</label>
+                        <input type="text" id="cookieName" placeholder="e.g., theme, preferences" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cookieValue">Cookie Value:</label>
+                        <input type="text" id="cookieValue" placeholder="e.g., dark_mode, en_US" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cookieExpiry">Expires In (days):</label>
+                        <input type="number" id="cookieExpiry" value="7" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cookiePath">Path:</label>
+                        <input type="text" id="cookiePath" value="/" required>
+                    </div>
+                </div>
+
+                <button type="submit">Set Cookie</button>
+            </form>
+        </section>
+
+        <!-- User Session Data -->
+        <section>
+            <h2>Store Session Data</h2>
+            <form onsubmit="addSessionData(event)" class="form-section">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dataKey">Key:</label>
+                        <input type="text" id="dataKey" placeholder="e.g., username, user_id" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dataValue">Value:</label>
+                        <input type="text" id="dataValue" placeholder="Enter the value" required>
+                    </div>
+                </div>
+
+                <button type="submit">Store in Session</button>
+            </form>
+        </section>
+
+        <!-- Display Cookies -->
+        <section>
+            <h2>Active Cookies</h2>
+            <div class="data-container">
+                <div id="cookiesList" class="data-list"></div>
+                <button onclick="clearAllCookies()" style="margin-top: 1rem;">Clear All Cookies</button>
+            </div>
+        </section>
+
+        <!-- Display Session Data -->
+        <section>
+            <h2>Session Storage Data</h2>
+            <div class="data-container">
+                <div id="sessionDataList" class="data-list"></div>
+                <button onclick="clearSessionData()" style="margin-top: 1rem;">Clear Session Data</button>
+            </div>
+        </section>
+
+        <!-- Shopping Cart Demo -->
+        <section>
+            <h2>Shopping Cart (Session-based)</h2>
+            <div class="cart-section">
+                <div class="add-item-form">
+                    <h3>Add Item to Cart</h3>
+                    <form onsubmit="addToCart(event)" class="form-section">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemName">Item Name:</label>
+                                <input type="text" id="itemName" placeholder="e.g., Laptop" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="itemPrice">Price:</label>
+                                <input type="number" id="itemPrice" step="0.01" min="0" placeholder="0.00" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="itemQuantity">Quantity:</label>
+                                <input type="number" id="itemQuantity" value="1" min="1" required>
+                            </div>
+                        </div>
+
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
+
+                <div class="cart-display">
+                    <h3>Shopping Cart Items</h3>
+                    <div id="cartList" class="data-list"></div>
+                    <div class="cart-summary">
+                        <p>Total Items: <span id="cartCount">0</span></p>
+                        <p>Total Price: $<span id="cartTotal">0.00</span></p>
+                        <button onclick="checkout()">Checkout</button>
+                        <button onclick="clearCart()" style="margin-left: 0.5rem; background-color: #999;">Clear Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Section -->
+        <section style="margin-top: 2rem;">
+            <h2>Sessions & Cookies Concepts</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Session Storage</h3>
+                    <p>Stores data for the duration of the page session. Data is cleared when tab is closed.</p>
+                </div>
+                <div class="card">
+                    <h3>Local Storage</h3>
+                    <p>Persists data indefinitely until explicitly cleared. Survives browser restarts.</p>
+                </div>
+                <div class="card">
+                    <h3>Cookies</h3>
+                    <p>Small files stored on client side. Sent with every HTTP request. Useful for authentication.</p>
+                </div>
+                <div class="card">
+                    <h3>Session ID</h3>
+                    <p>Unique identifier for each user session. Validates user identity across pages.</p>
+                </div>
+                <div class="card">
+                    <h3>Expiry Management</h3>
+                    <p>Automatic deletion of sessions/cookies after specified time period for security.</p>
+                </div>
+                <div class="card">
+                    <h3>Security</h3>
+                    <p>Use secure flags, httponly attributes, and proper validation to protect user data.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Session Variables vs Cookies:</h3>
+            <table style="width: 100%;">
+                <tr>
+                    <th>Feature</th>
+                    <th>Session</th>
+                    <th>Cookies</th>
+                </tr>
+                <tr>
+                    <td>Storage Location</td>
+                    <td>Server (or client storage)</td>
+                    <td>Client (browser)</td>
+                </tr>
+                <tr>
+                    <td>Lifetime</td>
+                    <td>Until browser closes</td>
+                    <td>Until expiration date</td>
+                </tr>
+                <tr>
+                    <td>Sent with Requests</td>
+                    <td>No (server-side only)</td>
+                    <td>Yes (HTTP header)</td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>More secure</td>
+                    <td>Less secure (visible)</td>
+                </tr>
+                <tr>
+                    <td>Size Limit</td>
+                    <td>Unlimited (server)</td>
+                    <td>4KB per cookie</td>
+                </tr>
+                <tr>
+                    <td>Use Case</td>
+                    <td>Sensitive data, authentication</td>
+                    <td>Preferences, tracking</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sessions & Cookies Management. All rights reserved.</p>
+        <p>Sessions & Cookies with PHP Concepts - Exercise 10</p>
+    </footer>
+
+    <script src="sessions.js"></script>
+</body>
+</html>

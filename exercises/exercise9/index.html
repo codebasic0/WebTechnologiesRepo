@@ -1,0 +1,186 @@
+<!-- Exercise 9: Product Management with PHP & MySQL (Simulated) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 9 - Product Management</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">← Back to Home</a></li>
+            <li><a href="index.html">Product Management</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Product Management System</h1>
+        <p>Create, Read, Update, Delete (CRUD) operations with MySQL-style database</p>
+    </header>
+
+    <main>
+        <!-- Add Product Form -->
+        <section>
+            <h2>Add New Product</h2>
+            <form id="productForm" class="form-section" onsubmit="addProduct(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productName">Product Name:</label>
+                        <input type="text" id="productName" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select id="category" name="category" required>
+                            <option value="">-- Select Category --</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Books">Books</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Food">Food & Beverages</option>
+                            <option value="Home">Home & Garden</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Price ($):</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Stock Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="sku">SKU (Stock Keeping Unit):</label>
+                    <input type="text" id="sku" name="sku" placeholder="e.g., PROD-001" required>
+                </div>
+
+                <button type="submit">Add Product</button>
+                <button type="reset" style="margin-left: 0.5rem; background-color: #999;">Clear</button>
+            </form>
+
+            <div id="addMessage"></div>
+        </section>
+
+        <!-- Search & Filter -->
+        <section>
+            <h2>Search & Filter Products</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search by product name or category..." onkeyup="searchProducts()">
+                <select id="categoryFilter" onchange="filterByCategory()">
+                    <option value="">All Categories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Books">Books</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Food">Food & Beverages</option>
+                    <option value="Home">Home & Garden</option>
+                </select>
+                <button onclick="resetFilters()">Reset Filters</button>
+            </div>
+        </section>
+
+        <!-- Products Display -->
+        <section>
+            <h2>Product Inventory</h2>
+            <div class="stats">
+                <div class="stat-box">
+                    <h4>Total Products</h4>
+                    <p id="totalProducts">0</p>
+                </div>
+                <div class="stat-box">
+                    <h4>Total Value</h4>
+                    <p>$<span id="totalValue">0.00</span></p>
+                </div>
+                <div class="stat-box">
+                    <h4>Low Stock Items</h4>
+                    <p id="lowStockCount">0</p>
+                </div>
+            </div>
+
+            <table id="productsTable" class="products-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable('name')">Product Name ↕</th>
+                        <th onclick="sortTable('category')">Category ↕</th>
+                        <th onclick="sortTable('price')">Price ↕</th>
+                        <th onclick="sortTable('quantity')">Stock ↕</th>
+                        <th>SKU</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productsList"></tbody>
+            </table>
+
+            <div id="emptyState" class="empty-state">No products found. Add your first product above!</div>
+        </section>
+
+        <!-- Edit Product Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Edit Product</h2>
+                <form id="editForm" onsubmit="updateProduct(event)">
+                    <input type="hidden" id="editId">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editName">Product Name:</label>
+                            <input type="text" id="editName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editCategory">Category:</label>
+                            <select id="editCategory" required>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Books">Books</option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Food">Food & Beverages</option>
+                                <option value="Home">Home & Garden</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editPrice">Price ($):</label>
+                            <input type="number" id="editPrice" step="0.01" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editQuantity">Stock Quantity:</label>
+                            <input type="number" id="editQuantity" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editDescription">Description:</label>
+                        <textarea id="editDescription" rows="3" required></textarea>
+                    </div>
+
+                    <button type="submit">Update Product</button>
+                    <button type="button" onclick="closeModal()" style="background-color: #999;">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Product Management System. All rights reserved.</p>
+        <p>Product Management with PHP & MySQL Concepts - Exercise 9</p>
+    </footer>
+
+    <script src="products.js"></script>
+</body>
+</html>

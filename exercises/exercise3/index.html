@@ -1,0 +1,205 @@
+<!-- Exercise 3: Enhanced Personal Website with CSS -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 3 - Enhanced Personal Website</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Internal CSS */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .service-box h3 {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .testimonials {
+            background-color: #0F172A;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            color: #E2E8F0;
+        }
+
+        .testimonial {
+            background: #111827;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #0EA5E9;
+            border-radius: 4px;
+            font-style: italic;
+            color: #E2E8F0;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 3rem;
+            color: #0EA5E9;
+            font-style: normal;
+        }
+
+        .testimonial-author {
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-weight: 600;
+            color: #94A3B8;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">← Back to Home</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Shreansh - Styled Portfolio</h1>
+        <p>Web Developer | Designer | Creative Thinker</p>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <div class="hero">
+            <h2>Welcome to My Enhanced Portfolio</h2>
+            <p style="font-size: 1.1rem;">With beautiful CSS styling and design</p>
+        </div>
+
+        <!-- About Section -->
+        <section id="about">
+            <h1>About Me</h1>
+            <p style="margin-bottom: 1rem; font-size: 1.1rem;"><strong>Studying in 4th year college and pursuing Computer Science general degree.</strong> I specialize in both front-end and back-end development for the following programming languages: Java, Python, Luau (Roblox game development), HTML (Including CSS and JS), MySQL and C.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div>
+                    <h3 style="color: #0B3D91;">Full-Stack Development</h3>
+                    <p>I craft responsive, dynamic applications with expertise in both frontend interfaces and robust backend systems. From user-facing design to server-side logic, I deliver complete solutions.</p>
+                </div>
+                <div>
+                    <h3 style="color: #0B3D91;">My Focus Areas</h3>
+                    <p>Combining professional web development skills with game development expertise. Whether building web applications or interactive Roblox games, I focus on clean code, user experience, and functionality.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <h1>Services Offered</h1>
+            <div class="services-grid">
+                <div class="service-box">
+                    <h3>Web Design</h3>
+                    <p>Beautiful, modern website designs that capture your brand essence and engage your audience.</p>
+                </div>
+                <div class="service-box">
+                    <h3>Web Development</h3>
+                    <p>Responsive, fast-loading websites built with the latest technologies and best practices.</p>
+                </div>
+                <div class="service-box">
+                    <h3>UI/UX Design</h3>
+                    <p>Intuitive interfaces and delightful user experiences that convert visitors into customers.</p>
+                </div>
+                <div class="service-box">
+                    <h3>WordPress</h3>
+                    <p>Custom WordPress sites optimized for speed, SEO, and easy content management.</p>
+                </div>
+                <div class="service-box">
+                    <h3>E-Commerce</h3>
+                    <p>Powerful online stores that drive sales and provide seamless shopping experiences.</p>
+                </div>
+                <div class="service-box">
+                    <h3>Maintenance</h3>
+                    <p>Ongoing support and updates to keep your website secure and running smoothly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials">
+            <h1 style="color: #333; text-align: center; margin-bottom: 2rem;">What Clients Say</h1>
+            
+            <div class="testimonial">
+                <p>Working with John was an absolute pleasure. He delivered a stunning website that exceeded our expectations. Highly professional and responsive!</p>
+                <div class="testimonial-author">- Sarah Johnson, CEO at Tech Startup Inc.</div>
+            </div>
+
+            <div class="testimonial">
+                <p>John's attention to detail and creative solutions transformed our online presence. I recommend him to anyone looking for quality web development.</p>
+                <div class="testimonial-author">- Michael Chen, Owner at Digital Marketing Agency</div>
+            </div>
+
+            <div class="testimonial">
+                <p>The design work was exceptional, and the communication throughout the project was transparent and professional. John is a true professional!</p>
+                <div class="testimonial-author">- Emily Rodriguez, Marketing Director at Fashion Brand Co.</div>
+            </div>
+        </section>
+
+        <!-- Portfolio Stats -->
+        <section style="margin-top: 2rem;">
+            <h1>My Track Record</h1>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; text-align: center;">
+                <div class="card" style="border-top: 4px solid #0B3D91;">
+                    <h2 style="color: #0B3D91; font-size: 2.5rem;">6+</h2>
+                    <p>Programming Languages</p>
+                </div>
+                <div class="card" style="border-top: 4px solid #00D4FF;">
+                    <h2 style="color: #00D4FF; font-size: 2.5rem;">10+</h2>
+                    <p>Projects Created</p>
+                </div>
+                <div class="card" style="border-top: 4px solid #F97316;">
+                    <h2 style="color: #F97316; font-size: 2.5rem;">4th</h2>
+                    <p>Year of CS Degree</p>
+                </div>
+                <div class="card" style="border-top: 4px solid #10B981;">
+                    <h2 style="color: #10B981; font-size: 2.5rem;">Full</h2>
+                    <p>Stack Developer</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Shreansh. All rights reserved.</p>
+        <p>Enhanced Portfolio - Exercise 3 (with CSS: Inline, Internal, External)</p>
+    </footer>
+</body>
+</html>
