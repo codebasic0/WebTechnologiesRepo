@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreansh Jain - Full-Stack Developer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Professional Portfolio Styling */
+        :root {
+            --primary-color: #1E293B;
+            --secondary-color: #0EA5E9;
+            --accent-color: #F97316;
+            --background-color: #2D3748;
+            --text-color: #E2E8F0;
+            --light-text: #A0AEC0;
+            --white: #FFFFFF;
+            --success-color: #10B981;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            max-width: 1400px;
+            margin: 0 auto;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav li:first-child a {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0F172A 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: var(--light-text);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Section Styling */
+        section {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section > h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        section > p {
+            color: var(--light-text);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Developer Profile Section */
+        .profile-section {
+            background: linear-gradient(135deg, #263549 0%, #1A202C 100%);
+            border: none;
+            padding: 4rem 2rem;
+            margin: 0;
+        }
+
+        .profile-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .profile-text p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .expertise-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .expertise-item {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .expertise-item::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            margin-right: 1rem;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .expertise-item span {
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .skill-category {
+            margin-top: 2rem;
+        }
+
+        .skill-category h4 {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 0.35rem 0.85rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: rgba(14, 165, 233, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        /* Exercises Section */
+        .exercises-section {
+            background: var(--primary-color);
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .exercises-section > h2 {
+            max-width: 1400px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .exercises-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .exercise-card {
+            background: #263549;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .exercise-card:hover {
+            border-color: var(--secondary-color);
+            box-shadow: 0 12px 30px rgba(14, 165, 233, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .exercise-header {
+            background: rgba(14, 165, 233, 0.08);
+            border-bottom: 2px solid var(--secondary-color);
+            padding: 1.5rem;
+        }
+
+        .exercise-number {
+            display: inline-block;
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .exercise-header h3 {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .exercise-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exercise-body p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .exercise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .exercise-tag {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        .exercise-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #06B6D4 100%);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .exercise-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+        }
+
+        /* Features Section */
+        .features-section {
+            background: var(--primary-color);
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .features-section h2 {
+            max-width: 1400px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-box {
+            padding: 2rem 1.5rem;
+            background: #263549;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .feature-box:hover {
+            border-left-color: var(--secondary-color);
+            border-color: var(--border-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-box h4 {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .feature-box p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Stack Section */
+        .stack-section {
+            background: var(--primary-color);
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stack-section h2 {
+            max-width: 1400px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .stack-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .stack-card {
+            background: #263549;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 4px;
+        }
+
+        .stack-card h3 {
+            font-size: 1.05rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .stack-card ul {
+            list-style: none;
+        }
+
+        .stack-card li {
+            color: var(--light-text);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .stack-card li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #0F172A;
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            color: var(--light-text);
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        footer p:first-child {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .profile-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .exercises-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                padding: 0 1rem;
+            }
+
+            nav a {
+                padding: 0.75rem 1rem;
+            }
+
+            main {
+                padding: 0;
+            }
+
+            .profile-section,
+            .exercises-section,
+            .features-section,
+            .stack-section {
+                padding: 2rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exercises-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-list {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stack-container {
+                grid-template-columns: 1fr;
+            }
+
+            section > h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#exercises">Exercises</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#stack">Stack</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Shreansh Jain</h1>
+        <p>Full-Stack Developer & Computer Science Student</p>
+    </header>
+
+    <main>
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <div class="profile-container">
+                <div class="profile-text">
+                    <h2>About</h2>
+                    <p>
+                        4th-year Computer Science student with a strong foundation in full-stack development. Experienced in designing and implementing scalable applications across multiple platforms and programming languages.
+                    </p>
+                    <p>
+                        This project demonstrates comprehensive knowledge of web development fundamentals through advanced concepts, showcasing proficiency in both frontend user interfaces and backend system architecture.
+                    </p>
+
+                    <div class="skill-category">
+                        <h4>Core Competencies</h4>
+                        <div class="expertise-list">
+                            <div class="expertise-item"><span>Full-Stack Development</span></div>
+                            <div class="expertise-item"><span>Database Design</span></div>
+                            <div class="expertise-item"><span>Frontend Architecture</span></div>
+                            <div class="expertise-item"><span>Backend Systems</span></div>
+                            <div class="expertise-item"><span>Game Development</span></div>
+                            <div class="expertise-item"><span>System Design</span></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Languages & Technologies</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">Luau</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 style="font-size: 1.5rem; margin-bottom: 2rem;">Project Metrics</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">10</div>
+                            <div class="stat-label">Exercises</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1400+</div>
+                            <div class="stat-label">Code Lines</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Languages</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">Full</div>
+                            <div class="stat-label">Stack</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section id="exercises" class="exercises-section">
+            <h2>Projects & Exercises</h2>
+            <div class="exercises-grid">
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 1</div>
+                        <h3>Personal Website</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>Multi-page website architecture demonstrating semantic HTML structure and navigation patterns across distributed pages.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">HTML5</span>
+                            <span class="exercise-tag">Structure</span>
+                        </div>
+                        <a href="exercises/exercise1/index.html" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 2</div>
+                        <h3>E-Commerce Platform</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>Advanced HTML implementation with semantic markup, data tables, forms, and structured product catalog design.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">HTML5</span>
+                            <span class="exercise-tag">Advanced</span>
+                        </div>
+                        <a href="exercises/exercise2/index.html" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 3</div>
+                        <h3>Styled Components</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>Comprehensive CSS implementation demonstrating inline, internal, and external styling methodologies with animations.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">CSS3</span>
+                            <span class="exercise-tag">Styling</span>
+                        </div>
+                        <a href="exercises/exercise3/index.html" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 4</div>
+                        <h3>Advanced Styling</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>Professional CSS design with gradient effects, hover states, responsive grids, and modern UI patterns.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">CSS3</span>
+                            <span class="exercise-tag">Design</span>
+                        </div>
+                        <a href="exercises/exercise4/index.html" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 5</div>
+                        <h3>Scientific Calculator</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>Interactive JavaScript application with dual operational modes, mathematical functions, and persistent computation history.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">JavaScript</span>
+                            <span class="exercise-tag">Logic</span>
+                        </div>
+                        <a href="exercises/exercise5/index.html" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 6</div>
+                        <h3>Authentication System</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>Real-time form validation with password strength analysis, user credential management, and secure storage patterns.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">JavaScript</span>
+                            <span class="exercise-tag">Forms</span>
+                        </div>
+                        <a href="exercises/exercise6/index.html" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 7</div>
+                        <h3>Event Architecture</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>Comprehensive event system demonstrating mouse, keyboard, form, window, and custom event handling with propagation.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">JavaScript</span>
+                            <span class="exercise-tag">Events</span>
+                        </div>
+                        <a href="exercises/exercise7/index.html" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 8</div>
+                        <h3>Server-Side Processing</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>PHP form processing with validation, sanitization, and persistent database storage.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">PHP</span>
+                            <span class="exercise-tag">Backend</span>
+                        </div>
+                        <a href="exercises/exercise8/index.php" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 9</div>
+                        <h3>Database Operations</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>Complete CRUD implementation with product inventory management and MySQL integration.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">MySQL</span>
+                            <span class="exercise-tag">Database</span>
+                        </div>
+                        <a href="exercises/exercise9/index.php" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-number">Exercise 10</div>
+                        <h3>Session Management</h3>
+                    </div>
+                    <div class="exercise-body">
+                        <p>User session implementation with cookie handling and server-side persistence.</p>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">Sessions</span>
+                            <span class="exercise-tag">State</span>
+                        </div>
+                        <a href="exercises/exercise10/index.php" class="exercise-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>Professional Architecture</h4>
+                    <p>Clean code structure following industry best practices and design patterns.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Responsive Design</h4>
+                    <p>Adaptive layouts that perform seamlessly across all device sizes and screen resolutions.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Form Validation</h4>
+                    <p>Comprehensive client-side validation with real-time feedback and error handling.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Data Persistence</h4>
+                    <p>LocalStorage implementation simulating database-level data management and retrieval.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Interactive Components</h4>
+                    <p>Dynamic functionality with real-time updates and rich user interaction patterns.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Performance Optimized</h4>
+                    <p>Efficient code execution with debouncing, caching, and DOM manipulation optimization.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Stack Section -->
+        <section id="stack" class="stack-section">
+            <h2>Technical Stack</h2>
+            <div class="stack-container">
+                <div class="stack-card">
+                    <h3>Frontend Technologies</h3>
+                    <ul>
+                        <li>HTML5 Semantic Markup</li>
+                        <li>CSS3 Responsive Design</li>
+                        <li>JavaScript ES6+</li>
+                        <li>DOM Manipulation</li>
+                        <li>Local Storage API</li>
+                        <li>Event Handling</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <h3>Backend Concepts</h3>
+                    <ul>
+                        <li>PHP Form Processing</li>
+                        <li>MySQL Database Design</li>
+                        <li>Server-side Validation</li>
+                        <li>Data Sanitization</li>
+                        <li>Session Management</li>
+                        <li>Cookie Handling</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <h3>Development Practices</h3>
+                    <ul>
+                        <li>Clean Code Architecture</li>
+                        <li>DRY Principles</li>
+                        <li>Cross-browser Compatibility</li>
+                        <li>Performance Optimization</li>
+                        <li>Accessibility Standards</li>
+                        <li>Responsive Development</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <h3>Additional Languages</h3>
+                    <ul>
+                        <li>Java Backend Systems</li>
+                        <li>Python Scripting</li>
+                        <li>C Systems Programming</li>
+                        <li>Luau Game Development</li>
+                        <li>Database Modeling</li>
+                        <li>API Integration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>2026 Shreansh - Full-Stack Developer</p>
+        <p>Comprehensive Web Development Lab Exercises | HTML5, CSS3, JavaScript, PHP, MySQL</p>
+    </footer>
+</body>
+</html>
